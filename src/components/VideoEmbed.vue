@@ -53,10 +53,10 @@ void props
 </template>
 
 <style scoped>
-.video { position: relative; width: 100%; border-radius: var(--radius); overflow: hidden; background: #000; border: 1px solid var(--line); }
+.video { position: relative; width: 100%; border-radius: var(--radius); overflow: hidden; background: #000; border: 1px solid var(--border); }
 .video.hoch { aspect-ratio: 9 / 16; max-width: 340px; margin: 0 auto; }
 .video.quer { aspect-ratio: 16 / 9; }
 iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.platzhalter { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 20px; text-align: center; background: radial-gradient(circle at 50% 35%, #1f3a2b, #000 70%); }
+.platzhalter { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 20px; text-align: center; background: radial-gradient(circle at 50% 30%, rgba(143,128,255,.35), transparent 60%), radial-gradient(circle at 50% 80%, rgba(62,230,176,.2), transparent 60%), #05070d; }
 .play { font-size: 3rem; color: var(--accent); }
 </style>

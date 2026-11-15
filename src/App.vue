@@ -1,58 +1,50 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { navigation, projekt } from './config/texts'
-import { demoAktiv, erkenneDemo } from './composables/demo'
+import { onMounted } from 'vue'
+import SiteHeader from './components/SiteHeader.vue'
+import { projekt } from './config/texts'
+import { erkenneDemo } from './composables/demo'
+import { abschnittAusHash, scrolleZu } from './composables/navigation'
+import HeroSection from './sections/HeroSection.vue'
+import SimulatorSection from './sections/SimulatorSection.vue'
+import FansSection from './sections/FansSection.vue'
+import HintergrundSection from './sections/HintergrundSection.vue'
+import FaktenSection from './sections/FaktenSection.vue'
+import SelbsttestSection from './sections/SelbsttestSection.vue'
+import HilfeSection from './sections/HilfeSection.vue'
 
-const route = useRoute()
-const header = ref<HTMLElement | null>(null)
-onMounted(() => {
-  // Höhe des sticky Headers als CSS-Variable (für sticky Elemente darunter)
-  const ro = new ResizeObserver(() => {
-    document.documentElement.style.setProperty('--header-h', `${header.value?.offsetHeight ?? 0}px`)
-  })
-  if (header.value) ro.observe(header.value)
-})
-function zumInhalt() {
-  document.getElementById('inhalt')?.focus()
+erkenneDemo()
+
+function springeZuHash() {
+  const id = abschnittAusHash(window.location.hash)
+  if (id) requestAnimationFrame(() => scrolleZu(id, false))
 }
-watch(
-  () => route.fullPath,
-  () => {
-    erkenneDemo(route.query.demo)
-    const t = (route.meta.titel as string) ?? ''
-    document.title = `${t ? t + ' · ' : ''}${projekt.titel}`
-  },
-  { immediate: true },
-)
+
+onMounted(() => {
+  springeZuHash()
+  window.addEventListener('hashchange', () => {
+    erkenneDemo()
+    springeZuHash()
+  })
+})
+
+function zumInhalt() {
+  scrolleZu('simulator')
+}
 </script>
 
 <template>
-  <a class="skip-link" href="#inhalt" @click.prevent="zumInhalt">Zum Inhalt springen</a>
-  <header ref="header" class="topbar">
-    <div class="banner" role="note">
-      <span class="banner-icon" aria-hidden="true">🛡️</span>
-      <strong>{{ projekt.banner }}</strong>
-      <span v-if="demoAktiv" class="demo-badge">Demo-Modus</span>
-    </div>
-    <div class="topbar-inner">
-      <RouterLink to="/" class="brand" aria-label="Gegen die Quote – zur Startseite">
-        <span class="brand-mark" aria-hidden="true">⚽</span>{{ projekt.titel }}
-      </RouterLink>
-      <nav aria-label="Hauptnavigation">
-        <ul class="nav">
-          <li v-for="n in navigation" :key="n.to">
-            <RouterLink :to="n.to" class="nav-link" exact-active-class="aktiv">{{ n.label }}</RouterLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="inhalt" tabindex="-1" class="container">
-    <RouterView />
+  <div class="aurora" aria-hidden="true"></div>
+  <a class="skip-link" href="#simulator" @click.prevent="zumInhalt">Zum Simulator springen</a>
+  <SiteHeader />
+  <main>
+    <HeroSection />
+    <SimulatorSection />
+    <FansSection />
+    <HintergrundSection />
+    <FaktenSection />
+    <SelbsttestSection />
+    <HilfeSection />
   </main>
-
   <footer class="footer">
     <p>{{ projekt.footer }}</p>
   </footer>

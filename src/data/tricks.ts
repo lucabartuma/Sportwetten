@@ -1,7 +1,14 @@
 /**
- * Typische Anbieter-Tricks: erscheinen als Pop-up im Simulator und werden
- * danach in einer Infobox aufgelöst.
+ * Typische Anbieter-Tricks: werden als «Werbung» gezeigt und per Klick
+ * aufgelöst («Was steckt dahinter?»).
  */
+export const tricksTexte = {
+  titel: 'Durchschau die Tricks',
+  intro: 'So sehen typische Angebote in Wett-Apps aus. Tippe darauf, um zu sehen, was dahinter steckt.',
+  aufdecken: 'Was steckt dahinter?',
+  werbung: 'So wirbt die App',
+  wahrheit: 'Was dahinter steckt',
+}
 export type TrickId = 'bonus' | 'lossChasing' | 'knapp'
 
 export interface Trick {

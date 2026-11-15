@@ -189,6 +189,8 @@ export interface SaisonErgebnis {
   endguthaben: number
   /** Guthabenverlauf (inkl. Nachzahlungen) */
   verlauf: number[]
+  /** Indizes in `verlauf`, bei denen vorher nachgeladen wurde */
+  nachzahlungBei: number[]
 }
 
 /**
@@ -204,11 +206,13 @@ export function simuliereSaison(o: SaisonOptionen): SaisonErgebnis {
   let ausbezahlt = 0
   let einzahlungen = 0
   const verlauf: number[] = [guthaben]
+  const nachzahlungBei: number[] = []
 
   for (let i = 0; i < o.anzahlWetten; i++) {
     if (guthaben < o.einsatz) {
       guthaben += nachzahlung
       einzahlungen++
+      nachzahlungBei.push(verlauf.length)
     }
     const w = zufaelligeEinzelwette(o.rng, o.einsatz, marge)
     eingesetzt += w.eingesetzt
@@ -223,6 +227,7 @@ export function simuliereSaison(o: SaisonOptionen): SaisonErgebnis {
     einzahlungen,
     endguthaben: guthaben,
     verlauf,
+    nachzahlungBei,
   }
 }
 

@@ -9,8 +9,6 @@ export const simulationConfig = {
   marge: 0.07,
   /** Anzahl Partien pro Spieltag */
   partienProSpieltag: 5,
-  /** Schnellwahl-Einsätze (CHF); «All-in» kommt automatisch dazu */
-  einsatzSchnellwahl: [5, 10, 20],
   /** Bereich der «wahren» Wahrscheinlichkeiten */
   wahrscheinlichkeiten: {
     heimMin: 0.3,
@@ -18,13 +16,10 @@ export const simulationConfig = {
     remisMin: 0.2,
     remisMax: 0.3,
   },
-  /** Dauer der Spannungs-Animation in ms (normal / Demo-Modus) */
-  animationMs: 2600,
-  animationMsDemo: 1200,
-  /** Zeitraffer «ganze Saison» */
+  /** Simulator: ein Tipp, danach Saison mit so vielen Einzelwetten */
   zeitraffer: {
     anzahlWetten: 300,
-    /** Einsatz, falls noch keine eigene Wette gespielt wurde */
+    /** Einsatz pro Wette (Spiel-Franken) */
     standardEinsatz: 10,
     /** Betrag pro Nachzahlung, wenn das Guthaben auf 0 fällt */
     nachzahlung: 100,
@@ -54,8 +49,6 @@ export const simulationConfig = {
     /** Optionen für den Schieberegler */
     wettenOptionen: [50, 300, 1500],
   },
-  /** Pop-ups zu Anbieter-Tricks: höchstens 1 pro so vielen Runden */
-  popupMinAbstandRunden: 3,
   /** Fester Seed für den Demo-Modus (?demo=1) */
   demoSeed: 20261116,
 } as const
