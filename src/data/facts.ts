@@ -125,3 +125,68 @@ export const faktenTexte = {
     'Sportwetten sind in der Schweiz legal nur bei Sporttip (Swisslos) und Jouez Sport (Loterie Romande) und erst ab 18 Jahren. Ausländische Anbieter sind per VPN zwar leicht erreichbar, haben aber meist keinen Spielerschutz.',
   rechtlichQuelle: { label: 'Quelle: spielen-ohne-sucht.ch', url: 'https://www.spielen-ohne-sucht.ch' },
 }
+
+/**
+ * Skala «Wo hört der Spass auf?» – Anregung aus dem Experteninterview:
+ * Schwierig ist zu merken, ab wann es kein harmloser Spass mehr ist.
+ */
+export interface SkalaStufe {
+  id: string
+  titel: string
+  kurz: string
+  zeichen: string[]
+  ton: 'gruen' | 'gelb' | 'orange' | 'rot'
+}
+
+export const skala = {
+  titel: 'Wo hört der Spass auf?',
+  intro:
+    'Der Übergang ist fliessend – und von innen schwer zu sehen. Wähle eine Stufe und schau, woran man sie erkennt.',
+  stufen: [
+    {
+      id: 'spass',
+      titel: 'Spass',
+      kurz: 'Ab und zu, kleiner Betrag',
+      ton: 'gruen',
+      zeichen: [
+        'Du setzt nur Geld, dessen Verlust Dir egal ist.',
+        'Du hast vorher ein Limit und hältst es ein.',
+        'Das Spiel ist auch ohne Wette spannend.',
+      ],
+    },
+    {
+      id: 'gewohnheit',
+      titel: 'Gewohnheit',
+      kurz: 'Fast jedes Wochenende',
+      ton: 'gelb',
+      zeichen: [
+        'Wetten gehört zu jedem Spiel dazu.',
+        'Die Einsätze werden langsam grösser.',
+        'Du checkst Quoten und Push-Nachrichten öfter als nötig.',
+      ],
+    },
+    {
+      id: 'risiko',
+      titel: 'Risiko',
+      kurz: 'Verluste zurückholen',
+      ton: 'orange',
+      zeichen: [
+        'Nach einem Verlust willst Du es sofort zurückholen.',
+        'Du setzt mehr, als Du Dir vorgenommen hast.',
+        'Du erzählst lieber nicht, wie viel Du wettest.',
+      ],
+    },
+    {
+      id: 'problem',
+      titel: 'Problem',
+      kurz: 'Es kontrolliert Dich',
+      ton: 'rot',
+      zeichen: [
+        'Du leihst Dir Geld oder hast Schulden wegen Wetten.',
+        'Schule, Arbeit oder Freundschaften leiden.',
+        'Du hast versucht aufzuhören – und es nicht geschafft.',
+      ],
+    },
+  ] as SkalaStufe[],
+  hinweis: 'Ab «Risiko» lohnt es sich, mit jemandem zu reden. Der Selbsttest hilft beim Einordnen.',
+}

@@ -27,9 +27,9 @@ auf der Hilfe-Seite wird von YouTube geladen, und zwar erst nach einem Klick.
 | Simulator | `#simulator` | Ein Tipp, dann eine ganze Saison (300 Wetten) im Zeitraffer, danach die Auflösung |
 | 100 Fans | `#100-fans` | 100 Figuren spielen eine Saison, dazu ein Regler (50 / 300 / 1500 Wetten) und die UCSD-Studie |
 | Hintergrund | `#hintergrund` | Artikel «Warum wir über Sportwetten reden müssen» und die Anbieter-Tricks zum Aufdecken |
-| Fakten | `#fakten` | Fakten-Karten mit Quellen, Mythen vs. Fakten, Warnsignale |
+| Fakten | `#fakten` | Fakten-Karten mit Quellen, Mythen vs. Fakten, Skala «Wo hört der Spass auf?» |
 | Selbsttest | `#selbsttest` | 9 Fragen mit Auswertung als Ampel. Nichts wird gespeichert |
-| Hilfe | `#hilfe` | Hilfsangebote, Kurzclip, Medien, Tipps für Angehörige |
+| Hilfe | `#hilfe` | Hilfsangebote, Spielsperre, Videos, Boxen für Eltern sowie für Trainer:innen und Lehrpersonen, Medien |
 
 Eine fixe Navigation zeigt, wo man gerade ist, und ein Fortschrittsbalken zeigt, wie weit man gescrollt hat.
 Der Knopf «Hilfe» ist immer sichtbar.
@@ -129,6 +129,40 @@ keine Lust aufs Wetten macht. Dazu gehören:
 Wer «Bewegung reduzieren» im System eingestellt hat, bekommt alle Animationen abgeschaltet.
 Die Farben stehen als Variablen oben in `src/style.css`.
 
+## Umsetzung von Experteninterview und Vorrecherche
+
+Grundlage sind das Interview mit einer Fachperson aus der Betreuung jugendlicher Asylsuchender
+(Kanton AR) und die Excel-Liste mit Best-Practice-Beispielen.
+
+| Hinweis aus Interview / Recherche | Umsetzung im Prototyp |
+|---|---|
+| In einer sicheren Umgebung testen, Verlust in den Fokus, Zahlen greifbar machen | Der Simulator zeigt neu «Dein Tipp trifft in rund X von 100 Spielen ein», dazu ein Punkteraster |
+| Motiv «Sackgeld aufbessern» | Der Verlust wird umgerechnet, z. B. «7 Kinoeintritte oder 10 Döner» (Richtwerte in `src/config/texts.ts`) |
+| Motiv «Challenge untereinander» | Knopf «Kollegen herausfordern» kopiert einen Text, der zum Simulator einlädt und nicht zum Wetten |
+| Schwer zu merken, wann es kein harmloser Spass mehr ist | Neue Skala «Wo hört der Spass auf?» mit 4 Stufen im Abschnitt Fakten (`src/data/facts.ts`) |
+| Wettwerbung begegnet ihnen über TikTok, Kioske (Bargeld) und Kollegen | Ergänzt im Artikel |
+| Gutes Beispiel: Sperrlisten für Casinos | Karte «Spielsperre» im Abschnitt Hilfe |
+| Selbsttest und Links zu Hilfsangeboten sind sinnvoll | War schon vorhanden und bleibt so |
+| Video als digitale Form | Zwei Videos von Spielen ohne Sucht («Fanbegeisterung vs. Suchtgefahr», «Mit Sportwetten Geld verdienen?») plus der Kurzclip, alle laden erst nach Klick |
+| Eltern haben das Thema nicht auf dem Radar | Box für Eltern mit Gesprächseinstiegen und dem Link check-dein-spiel.de |
+| Über Trainer:innen und Vereine gehen | Box für Trainer:innen, Lehrpersonen und Betreuende mit 15-Minuten-Ablauf und Links (SFV, Suchtprävention Aargau) |
+| SFV: Spielsucht und Schulden machen anfällig für Spielmanipulation | Artikel-Absatz «Wenn Du selber im Verein spielst» |
+
+**Nicht im Prototyp umsetzbar, aber als Empfehlung fürs Projekt:**
+
+- **Absender:** Ein bekannter Fussballer, am besten aus der Liga, oder die Trainerin bzw. der Trainer des
+  eigenen Vereins. Idee: ein kurzes Video mit einer solchen Person in den Video-Bereich setzen
+  (`src/data/help.ts`, Liste `clips`).
+- **Kanäle:** TikTok, Berufsschulen, Stadion und Kioske.
+- **Paradoxe Interventionen vor Ort**, etwa ein Plakat «Schlag den Wettanbieter» mit QR-Code auf den
+  Simulator. Dafür braucht es zuerst eine gehostete URL.
+- **Vereine** sollen das Thema selbst aufgreifen. Anknüpfen lässt sich an das SFV-E-Learning
+  «Integrity in Football» und an die E-Learnings von Swiss Olympic (Cool and Clean).
+- **Webinar oder Workshop** für Fachpersonen als Einstieg, angelehnt an Suchtprävention Aargau.
+  Die Seite dient dabei als Material.
+- Das Thema in **Kampagnen zur Medienkompetenz** einbauen.
+- Die Fachperson ist bereit, einen Entwurf zu testen, und kann ein Gespräch mit einem Jugendlichen vermitteln.
+
 ## Demo-Modus für die Präsentation
 
 Den Demo-Modus schaltet man auf eine dieser Arten ein:
@@ -176,9 +210,13 @@ Pfad zur Datei anpassen, z. B. `file:///C:/Praesentation/index.html`. Die alten 
 - **Links prüfen:** Für `game-changer.ch` habe ich `https://www.game-changer.ch` angenommen.
   Der Link zur heute-show (ZDF, 21.8.2026) zeigt nur auf die Sendungsseite, weil die genaue
   Beitrags-URL fehlt (`src/data/help.ts`).
-- **Kurzclip:** Die Nutzungsrechte vor einer Veröffentlichung klären.
+- **Videos:** Die Nutzungsrechte vor einer Veröffentlichung klären. Das betrifft vor allem den Kurzclip;
+  die zwei Videos stammen von Spielen ohne Sucht.
+- **Spielsperre:** Den Text (die Sperre gilt bei allen bewilligten Casinos und Online-Geldspielen)
+  und den Link fachlich prüfen lassen (`src/data/help.ts`).
+- **Skala «Wo hört der Spass auf?»** und die Gesprächstipps für Eltern und Trainer:innen sind eigene
+  Formulierungen. Bitte fachlich gegenlesen.
 - **Kernkennzahl:** «4 von 100» (UCSD) statt «jeder Hundertste». Bei Bedarf in `src/data/facts.ts` ändern.
-- **Unterlagen von Alessio** (Excel, Interview-Notizen) sind noch nicht eingearbeitet.
 - **Selbsttest-Schwellen** (Grün 0–3, Gelb 4–9, Rot ab 10) von Fachpersonen prüfen lassen.
 - **Teamnamen** vor einer Veröffentlichung kurz prüfen, ob gleichnamige Amateurclubs existieren.
 - **Mit der Zielgruppe testen:** ob der Einseiter durchgescrollt wird und ob der Simulator Lust aufs Wetten macht.

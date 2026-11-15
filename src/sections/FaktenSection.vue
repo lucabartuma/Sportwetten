@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuelleLink from '../components/QuelleLink.vue'
-import { fakten, faktenTexte as T, mythen, warnsignale } from '../data/facts'
+import { fakten, faktenTexte as T, mythen, skala } from '../data/facts'
 import { scrolleZu } from '../composables/navigation'
 
 const umgedreht = ref<boolean[]>(mythen.map(() => false))
+const stufe = ref(0)
+function taste(e: KeyboardEvent) {
+  const n = skala.stufen.length
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') stufe.value = (stufe.value + 1) % n
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') stufe.value = (stufe.value - 1 + n) % n
+  else return
+  e.preventDefault()
+  ;(e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[role=tab]')[stufe.value]?.focus()
+}
 </script>
 
 <template>
@@ -48,15 +57,43 @@ const umgedreht = ref<boolean[]>(mythen.map(() => false))
         </ul>
       </div>
 
-      <div class="card warn-card block" v-reveal>
-        <div>
-          <h2 class="h-sm">{{ T.warnsignaleTitel }}</h2>
-          <p class="muted">Erkennst Du Dich oder jemanden in Deinem Umfeld wieder?</p>
+      <div class="card skala block" v-reveal>
+        <header class="skala-head">
+          <div>
+            <h2 class="h-sm">{{ skala.titel }}</h2>
+            <p class="muted">{{ skala.intro }}</p>
+          </div>
+        </header>
+        <div class="track" role="tablist" aria-label="Stufen" @keydown="taste">
+          <button
+            v-for="(st, i) in skala.stufen"
+            :id="`stufe-tab-${st.id}`"
+            :key="st.id"
+            role="tab"
+            class="stufe"
+            :class="[st.ton, { aktiv: stufe === i }]"
+            :aria-selected="stufe === i"
+            :aria-controls="`stufe-panel`"
+            :tabindex="stufe === i ? 0 : -1"
+            @click="stufe = i"
+          >
+            <span class="balken" aria-hidden="true"></span>
+            <span class="st-titel">{{ i + 1 }}. {{ st.titel }}</span>
+            <span class="st-kurz">{{ st.kurz }}</span>
+          </button>
+        </div>
+        <Transition name="fade" mode="out-in">
+          <div id="stufe-panel" :key="stufe" role="tabpanel" :aria-labelledby="`stufe-tab-${skala.stufen[stufe].id}`" class="panel" :class="skala.stufen[stufe].ton">
+            <p class="panel-titel">Woran Du «{{ skala.stufen[stufe].titel }}» erkennst</p>
+            <ul class="plain-list zeichen">
+              <li v-for="z in skala.stufen[stufe].zeichen" :key="z"><span class="z-icon" aria-hidden="true">•</span>{{ z }}</li>
+            </ul>
+          </div>
+        </Transition>
+        <div class="skala-fuss">
+          <p class="muted small">{{ skala.hinweis }}</p>
           <a href="#selbsttest" class="btn btn-primary" @click.prevent="scrolleZu('selbsttest')">Selbsttest machen <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <ul class="plain-list warn">
-          <li v-for="w in warnsignale" :key="w"><span class="w-icon" aria-hidden="true">!</span>{{ w }}</li>
-        </ul>
       </div>
     </div>
   </section>
@@ -82,9 +119,26 @@ const umgedreht = ref<boolean[]>(mythen.map(() => false))
 .tag { align-self: flex-start; font-size: 0.75rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; }
 .tag.mythos { background: rgba(255, 125, 140, 0.16); color: var(--loss); }
 .tag.fakt-tag { background: rgba(62, 230, 176, 0.18); color: var(--accent); }
-.warn-card { display: grid; gap: 24px; align-items: center; }
-@media (min-width: 860px) { .warn-card { grid-template-columns: 1fr 1fr; } }
-.warn li { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); font-weight: 600; }
-.warn li:last-child { border-bottom: 0; }
-.w-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 201, 92, 0.15); color: var(--warn); font-weight: 900; flex: none; }
+.skala-head { margin-bottom: 18px; }
+.track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+@media (max-width: 640px) { .track { grid-template-columns: 1fr 1fr; } }
+.stufe { --c: var(--win); display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 12px 14px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255, 255, 255, 0.03); color: var(--text); font: inherit; cursor: pointer; transition: border-color 0.35s var(--ease), background 0.35s var(--ease), transform 0.35s var(--ease); }
+.stufe.gelb { --c: var(--warn); }
+.stufe.orange { --c: #ffa25c; }
+.stufe.rot { --c: var(--loss); }
+.stufe:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+.stufe.aktiv { border-color: var(--c); background: color-mix(in srgb, var(--c) 12%, transparent); }
+.balken { height: 4px; border-radius: 4px; background: var(--c); opacity: 0.5; margin-bottom: 6px; transition: opacity 0.35s; }
+.stufe.aktiv .balken { opacity: 1; }
+.st-titel { font-weight: 800; }
+.st-kurz { font-size: 0.82rem; color: var(--muted); }
+.panel { --c: var(--win); margin-top: 14px; padding: 18px 20px; border-radius: var(--radius-sm); border-left: 3px solid var(--c); background: rgba(255, 255, 255, 0.03); }
+.panel.gelb { --c: var(--warn); }
+.panel.orange { --c: #ffa25c; }
+.panel.rot { --c: var(--loss); }
+.panel-titel { font-weight: 800; margin-bottom: 8px; }
+.zeichen li { display: flex; gap: 10px; padding: 4px 0; color: #cfd6e2; }
+.z-icon { color: var(--c); font-weight: 900; }
+.skala-fuss { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; }
+.skala-fuss p { margin: 0; max-width: 52ch; }
 </style>

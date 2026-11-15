@@ -18,7 +18,7 @@ export const artikel = {
   titel: 'Warum wir über Sportwetten reden müssen',
   lede:
     'Wetten gehört für viele inzwischen zum Fussball wie der Schal. Die Werbung ist überall – auf Social Media, in der Halbzeitpause, auf dem Trikot. Was sie nicht erzählt: wie das Geschäft dahinter funktioniert.',
-  lesezeit: '3 Minuten Lesezeit',
+  lesezeit: '4 Minuten Lesezeit',
   absaetze: [
     {
       titel: 'Ein Trend, der vor allem junge Männer trifft',
@@ -33,6 +33,7 @@ export const artikel = {
       text: [
         'Anders als beim Lotto suggeriert die Werbung bei Sportwetten: Wer sich auskennt, gewinnt. Statistiken, Formkurven, «Expertentipps» – alles soll zeigen, dass Wissen den Unterschied macht.',
         'Dazu kommen Lockangebote wie Willkommensboni oder «Quoten-Boosts». Sie fühlen sich wie Geschenke an, sind aber so gebaut, dass Du länger und mehr spielst.',
+        'Vieles läuft aber gar nicht über Werbung: Wetten ist Gesprächsthema unter Kollegen, auf TikTok und am Kiosk, wo man auch bar wetten kann. Oft als Challenge untereinander – oder um das Sackgeld aufzubessern.',
       ],
     },
     {
@@ -50,6 +51,16 @@ export const artikel = {
         'In der Schweiz sind Sportwetten nur bei Sporttip (Swisslos) und Jouez Sport (Loterie Romande) erlaubt – und erst ab 18 Jahren. Ausländische Apps sind per VPN zwar leicht erreichbar, haben aber meist keinen Spielerschutz, keine Beschwerdestelle und keine Limiten.',
       ],
       link: { label: 'spielen-ohne-sucht.ch – Geldspiel in der Schweiz', url: 'https://www.spielen-ohne-sucht.ch' },
+    },
+    {
+      titel: 'Wenn Du selber im Verein spielst',
+      text: [
+        'Für Spielerinnen und Spieler kommt ein weiteres Risiko dazu: Wer wegen Wetten Schulden hat, wird anfällig für Bestechungsversuche und Spielmanipulation. Der Schweizerische Fussballverband warnt ausdrücklich davor.',
+      ],
+      link: {
+        label: 'SFV – Integrity in Football: Vorbeugung gegen Spielmanipulation',
+        url: 'https://www.football.ch/sfv/spirit-of-football/Good-Goverance/SPIELMANIPULATION.aspx',
+      },
     },
     {
       titel: 'Warum es hier keine Moralpredigt gibt',

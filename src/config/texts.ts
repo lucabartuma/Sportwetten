@@ -59,10 +59,28 @@ export const simulatorTexte = {
     'Einzelne Wetten kannst Du gewinnen. Aber in jeder Quote steckt die Marge – und je länger Du spielst, desto sicherer holt sich der Anbieter seinen Anteil.',
   gewinnHinweis:
     'Glück gehabt – diesmal. Spiel die Saison nochmals oder schau Dir an, wie es 100 Fans ergeht.',
+  wahrscheinlichkeit: (n: number) =>
+    `Dein Tipp trifft in rund ${n} von 100 solchen Spielen ein.`,
+  vergleichIntro: 'Das sind ungefähr',
+  vergleichHinweis: 'Richtwerte, gerundet.',
+  herausfordern: 'Kollegen herausfordern',
+  herausfordernText: (betrag: string) =>
+    `Ich habe bei «Gegen die Quote» in einer Saison CHF ${betrag} Spielgeld verloren. Schaffst Du’s besser? (Spoiler: fast niemand.)`,
+  kopiert: 'Text kopiert – schick ihn weiter.',
   nochmals: 'Neuer Tipp',
   zuFans: 'Wie geht’s 100 Fans?',
   verlaufLabel: 'Guthaben im Verlauf der Saison',
 }
+
+/**
+ * Verlust greifbar machen («Sackgeld»): ungefähre Preise in CHF.
+ * Richtwerte – bei Bedarf anpassen.
+ */
+export const vergleiche = [
+  { einzahl: 'Kinoeintritt', mehrzahl: 'Kinoeintritte', preis: 19 },
+  { einzahl: 'Döner', mehrzahl: 'Döner', preis: 13 },
+  { einzahl: 'Monat Handy-Abo', mehrzahl: 'Monate Handy-Abo', preis: 30 },
+]
 
 export const hundertFansTexte = {
   kicker: 'Experiment',

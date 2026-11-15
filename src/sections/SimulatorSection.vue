@@ -2,7 +2,7 @@
 import { computed, onBeforeUnmount, ref } from 'vue'
 import LineChart from '../components/LineChart.vue'
 import { simulationConfig as cfg } from '../config/simulation'
-import { simulatorTexte as T } from '../config/texts'
+import { simulatorTexte as T, vergleiche } from '../config/texts'
 import { ligaName, teams } from '../data/teams'
 import { demoAktiv } from '../composables/demo'
 import { chf, quote } from '../composables/format'
@@ -45,6 +45,30 @@ const rappen = computed(() => {
   const a = tipp.value
   return ((1 - partie.value.quoten[a] / partie.value.fair[a]) * 100).toFixed(1)
 })
+
+/** «X von 100»: wahre Wahrscheinlichkeit des Tipps */
+const vonHundert = computed(() => (tipp.value ? Math.round(partie.value.wahr[tipp.value] * 100) : 0))
+
+/** Verlust in Alltagsbeträgen (nur ganze Stück, ab 1) */
+const vergleichListe = computed(() => {
+  const v = total.value ? -total.value.netto : 0
+  if (v <= 0) return []
+  return vergleiche
+    .map((x) => ({ n: Math.floor(v / x.preis), x }))
+    .filter((e) => e.n >= 1)
+    .map((e) => `${e.n} ${e.n === 1 ? e.x.einzahl : e.x.mehrzahl}`)
+})
+
+const teilenStatus = ref('')
+async function herausfordern() {
+  const text = T.herausfordernText(chf(Math.max(0, -(total.value?.netto ?? 0)), 0))
+  try {
+    await navigator.clipboard.writeText(text)
+    teilenStatus.value = T.kopiert
+  } catch {
+    teilenStatus.value = text
+  }
+}
 
 function tippAbgeben() {
   if (!tipp.value) return
@@ -120,6 +144,7 @@ function neuerTipp() {
   saison.value = null
   idx.value = 0
   tipp.value = null
+  teilenStatus.value = ''
   partie.value = neuePartie()
   phase.value = 'tipp'
 }
@@ -187,6 +212,10 @@ onBeforeUnmount(() => cancelAnimationFrame(raf))
               </p>
               <div class="margen-box">
                 <p class="label">{{ T.quoteTitel }}</p>
+                <p class="small"><strong>{{ T.wahrscheinlichkeit(vonHundert) }}</strong></p>
+                <div class="hundert" role="img" :aria-label="`${vonHundert} von 100`">
+                  <span v-for="i in 100" :key="i" :class="{ an: i <= vonHundert }"></span>
+                </div>
                 <p class="small">{{ T.quoteText(quote(partie.fair[tipp!]), quote(partie.quoten[tipp!]), rappen) }}</p>
               </div>
             </div>
@@ -232,10 +261,16 @@ onBeforeUnmount(() => cancelAnimationFrame(raf))
           <div class="aufl-text">
             <h3 class="kern">{{ total.netto < 0 ? T.kernbotschaft : 'Glück gehabt – diesmal.' }}</h3>
             <p class="muted">{{ total.netto < 0 ? T.kernText : T.gewinnHinweis }}</p>
+            <p v-if="vergleichListe.length" class="vergleich">
+              {{ T.vergleichIntro }} <strong>{{ vergleichListe.join(' oder ') }}</strong>.
+              <span class="small muted">{{ T.vergleichHinweis }}</span>
+            </p>
             <div class="btn-row">
               <a href="#100-fans" class="btn btn-primary" @click.prevent="scrolleZu('100-fans')">{{ T.zuFans }} <span class="arrow" aria-hidden="true">→</span></a>
               <button class="btn btn-ghost" @click="neuerTipp">↺ {{ T.nochmals }}</button>
+              <button v-if="total.netto < 0" class="btn btn-ghost" @click="herausfordern">↗ {{ T.herausfordern }}</button>
             </div>
+            <p v-if="teilenStatus" class="small muted status" role="status">{{ teilenStatus }}</p>
           </div>
         </div>
       </Transition>
@@ -282,6 +317,12 @@ onBeforeUnmount(() => cancelAnimationFrame(raf))
 .icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid currentColor; font-weight: 900; flex: none; }
 .margen-box { padding: 14px 16px; border-radius: var(--radius-sm); background: rgba(143, 128, 255, 0.1); border: 1px solid rgba(143, 128, 255, 0.3); }
 .margen-box p:last-child { margin: 0; }
+.hundert { display: grid; grid-template-columns: repeat(20, 1fr); gap: 3px; margin: 2px 0 12px; max-width: 360px; }
+.hundert span { aspect-ratio: 1; border-radius: 50%; background: rgba(255, 255, 255, 0.12); transition: background 0.4s var(--ease); }
+.hundert span.an { background: var(--accent-2); }
+.vergleich { padding: 12px 14px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); }
+.vergleich .small { display: block; margin-top: 2px; }
+.status { margin: 12px 0 0; }
 .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px; }
 .saison { position: relative; display: flex; flex-direction: column; justify-content: center; transition: border-color 0.5s var(--ease); }
 .saison.aktiv { border-color: rgba(143, 128, 255, 0.35); }
