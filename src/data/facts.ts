@@ -37,13 +37,12 @@ export const fakten: Fakt[] = [
     stand: '9.7.2026',
   },
   {
-    id: 'ucsd',
-    wert: '96 %',
-    text: 'von über 700’000 Online-Spielenden verloren über fünf Jahre Geld – nur 4 % machten Gewinn.',
-    quelle:
-      'UC San Diego, Rady School of Management, 2025 (USA; Sportwetten, Online-Casino und Fantasy Sports zusammen)',
-    url: 'https://gamblingharm.org/most-online-gamblers-lose-study/',
-    stand: '2025 (Daten 2019–2023)',
+    id: 'swisslos',
+    wert: '169 Mio.',
+    text: 'Franken haben Wettende 2025 allein bei den Sportwetten von Swisslos mehr eingesetzt, als sie zurückbekommen haben (Bruttospielertrag).',
+    quelle: 'Swisslos, Geschäftsbericht 2025 (Deutschschweiz und Tessin, nur legales Angebot)',
+    url: 'https://static.swisslos.ch/media/swisslos/publikationen/pdf/gesch%C3%A4ftsbericht-2025.pdf',
+    stand: '13.2.2026',
   },
   {
     id: 'egames',
@@ -61,18 +60,44 @@ export const fakten: Fakt[] = [
     url: 'https://altenar.com/de/blog/house-edge-in-sports-betting-how-the-best-sportsbooks-manage-their-edge/',
     stand: '2025',
   },
+  {
+    id: 'junge-wettende',
+    wert: '14,8 %',
+    text: 'der jungen Männer zwischen 15 und 29 Jahren haben in den letzten 12 Monaten auf Sport gewettet (alle Befragten: 8,9 %).',
+    quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen» (2’028 Befragte, 15–29 Jahre)',
+    url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
+    stand: 'Mai 2026',
+  },
+  {
+    id: 'werbung',
+    wert: '~50 %',
+    text: 'der 15- bis 29-Jährigen sehen häufig oder sehr häufig Werbung für Sportwetten – vor allem auf Social Media und in Apps.',
+    quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen»',
+    url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
+    stand: 'Mai 2026',
+  },
+  {
+    id: 'risiken',
+    wert: '>40 %',
+    text: 'der 15- bis 29-Jährigen wurden nach eigenen Angaben nie über die Risiken von Sportwetten informiert.',
+    quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen»',
+    url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
+    stand: 'Mai 2026',
+  },
 ]
 
 /**
- * Kernkennzahl «nur X von 100 gewinnen» – bewusst nicht hart codiert.
- * Falls eine andere Quelle bevorzugt wird (z. B. «jeder Hundertste»), hier ändern.
+ * Kernkennzahl (Startseite und «100 Fans»): bewusst eine Schweizer Zahl.
+ * Hier ändern, falls eine andere Quelle bevorzugt wird.
  */
 export const kernkennzahl = {
-  gewinnerVon100: 4,
-  kurz: 'Nur rund 4 von 100 machen langfristig Gewinn.',
+  /** Wert für die Box «Die Rechnung» auf der Startseite */
+  wert: '169 Mio.',
+  wertText: 'Franken verloren Wettende 2025 allein bei Swisslos-Sportwetten',
+  /** Text unter «Und in der Realität?» (100 Fans) */
   studie:
-    'In einer Studie der University of California San Diego mit über 700’000 Online-Spielenden verloren 96 % Geld, nur 4 % machten Gewinn (2019–2023).',
-  faktId: 'ucsd',
+    'Allein bei den legalen Sportwetten von Swisslos haben Wettende 2025 rund CHF 169 Millionen mehr eingesetzt, als sie zurückbekommen haben. Genau diese Differenz ist der Ertrag des Anbieters – und der Verlust der Wettenden.',
+  faktId: 'swisslos',
 }
 
 export function faktById(id: string): Fakt | undefined {

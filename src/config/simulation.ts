@@ -38,9 +38,9 @@ export const simulationConfig = {
    *   2000 Wetten ≈ 98 von 100
    * (Mittel über 40 × 100 Fans, gemessen am 13.11.2026)
    * Zufällige Tipps haben hohe Quoten und damit viel Streuung; deshalb braucht
-   * es mehr Wetten als die im Brief geschätzten 500–600, um die Grössenordnung
-   * der UCSD-Studie (96 % verlieren) zu erreichen. 1500 Wetten ≈ 30 pro Woche
-   * über ein Jahr – für regelmässig Wettende realistisch.
+   * es mehr Wetten als die im Brief geschätzten 500–600, damit langfristig fast
+   * alle verlieren. 1500 Wetten ≈ 30 pro Woche über ein Jahr – für regelmässig
+   * Wettende realistisch.
    */
   hundertFans: {
     anzahlFans: 100,

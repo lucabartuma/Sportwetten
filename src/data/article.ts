@@ -24,26 +24,29 @@ export const artikel = {
       titel: 'Ein Trend, der vor allem junge Männer trifft',
       text: [
         'In der Schweiz wetten heute deutlich mehr Menschen online als noch vor zehn Jahren. Besonders betroffen sind junge Männer: Rund jeder zehnte Mann zwischen 15 und 24 Jahren zeigt ein problematisches Spielverhalten.',
+        'Gleichzeitig wird oft überschätzt, wie verbreitet Wetten ist: Junge Menschen schätzen, dass rund 30 % ihrer Kolleginnen und Kollegen regelmässig wetten. Tatsächlich haben im letzten Jahr 8,9 % überhaupt gewettet.',
         'Fachleute aus der Suchtprävention in der Ostschweiz bezeichnen Sportwetten deshalb als eine der grössten aktuellen Herausforderungen.',
       ],
-      quellen: ['junge-maenner', 'online-wachstum'],
+      quellen: ['junge-maenner', 'online-wachstum', 'junge-wettende'],
     },
     {
       titel: 'Die Werbung verkauft ein Gefühl von Kontrolle',
       text: [
+        'Rund die Hälfte der 15- bis 29-Jährigen in der Schweiz sieht häufig Werbung für Sportwetten – über 40 % wurden aber nie über die Risiken informiert.',
         'Anders als beim Lotto suggeriert die Werbung bei Sportwetten: Wer sich auskennt, gewinnt. Statistiken, Formkurven, «Expertentipps» – alles soll zeigen, dass Wissen den Unterschied macht.',
         'Dazu kommen Lockangebote wie Willkommensboni oder «Quoten-Boosts». Sie fühlen sich wie Geschenke an, sind aber so gebaut, dass Du länger und mehr spielst.',
         'Vieles läuft aber gar nicht über Werbung: Wetten ist Gesprächsthema unter Kollegen, auf TikTok und am Kiosk, wo man auch bar wetten kann. Oft als Challenge untereinander – oder um das Sackgeld aufzubessern.',
       ],
+      quellen: ['werbung'],
     },
     {
       titel: 'Das eigentliche Produkt: die Marge',
       text: [
         'Ein Wettanbieter muss nicht wissen, wer gewinnt. Er berechnet für jede Partie die Wahrscheinlichkeiten – und zahlt dann etwas weniger aus, als fair wäre. Zusammengerechnet ergeben die Quoten eines Spiels nicht 100 %, sondern etwa 106 %. Diese Differenz ist sein Gewinn.',
-        'Bei einer einzelnen Wette fällt das kaum auf. Über hunderte Wetten wird daraus ein fast sicherer Verlust. Und bei Kombiwetten multipliziert sich die Marge mit jedem Tipp.',
+        'Bei einer einzelnen Wette fällt das kaum auf. Über hunderte Wetten wird daraus ein fast sicherer Verlust. Und bei Kombiwetten multipliziert sich die Marge mit jedem Tipp. Wie viel da zusammenkommt, zeigt eine Schweizer Zahl: Allein bei Swisslos haben Wettende 2025 rund CHF 169 Millionen mehr eingesetzt, als sie zurückbekommen haben.',
       ],
       zitat: 'Der Anbieter wettet nicht gegen Dich. Er verdient an jeder Wette – egal, wie sie ausgeht.',
-      quellen: ['marge', 'ucsd'],
+      quellen: ['marge', 'swisslos'],
     },
     {
       titel: 'Legal, illegal – und warum das wichtig ist',

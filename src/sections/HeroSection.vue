@@ -43,13 +43,13 @@ onMounted(() => setTimeout(() => (gestartet.value = true), 350))
             <span class="small muted">ergeben die Quoten eines Spiels zusammen</span>
           </div>
           <div>
-            <span class="zahl">{{ 100 - kernkennzahl.gewinnerVon100 }}/100</span>
-            <span class="small muted">Online-Spielende verloren über 5 Jahre Geld</span>
+            <span class="zahl">{{ kernkennzahl.wert }}</span>
+            <span class="small muted">{{ kernkennzahl.wertText }}</span>
           </div>
         </div>
         <p v-if="marge && studie" class="quelle">
           Quellen: <a :href="marge.url" target="_blank" rel="noopener noreferrer">{{ marge.quelle }}</a> ·
-          <a :href="studie.url" target="_blank" rel="noopener noreferrer">UC San Diego 2025</a>
+          <a :href="studie.url" target="_blank" rel="noopener noreferrer">Swisslos, Geschäftsbericht 2025</a>
         </p>
       </aside>
     </div>

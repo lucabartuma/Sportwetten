@@ -25,7 +25,7 @@ auf der Hilfe-Seite wird von YouTube geladen, und zwar erst nach einem Klick.
 |---|---|---|
 | Start | `#start` | Hook, kurze Einleitung, «Die Rechnung» (CHF 100 → CHF 93.46) |
 | Simulator | `#simulator` | Ein Tipp, dann eine ganze Saison (300 Wetten) im Zeitraffer, danach die Auflösung |
-| 100 Fans | `#100-fans` | 100 Figuren spielen eine Saison, dazu ein Regler (50 / 300 / 1500 Wetten) und die UCSD-Studie |
+| 100 Fans | `#100-fans` | 100 Figuren spielen eine Saison, dazu ein Regler (50 / 300 / 1500 Wetten) und als Realitäts-Check die Schweizer Zahl von Swisslos (CHF 169 Mio. Verlust der Wettenden 2025) |
 | Hintergrund | `#hintergrund` | Artikel «Warum wir über Sportwetten reden müssen» und die Anbieter-Tricks zum Aufdecken |
 | Fakten | `#fakten` | Fakten-Karten mit Quellen, Mythen vs. Fakten, Skala «Wo hört der Spass auf?» |
 | Selbsttest | `#selbsttest` | 9 Fragen mit Auswertung als Ampel. Nichts wird gespeichert |
@@ -43,7 +43,7 @@ Alle Inhalte stehen in `src/data/` und `src/config/`, nie direkt in den Komponen
 | `src/config/simulation.ts` | Marge, Startguthaben, Einsatz, Anzahl Wetten pro Saison, 100-Fans-Parameter, Demo-Seed |
 | `src/config/texts.ts` | Titel (inkl. Alternativen), Banner, Footer, Abschnitte und Navigation, Texte von Hero, Simulator und 100 Fans |
 | `src/data/article.ts` | Hintergrund-Artikel (Absätze, Zitat, Verweise auf Quellen) |
-| `src/data/facts.ts` | Fakten-Karten (Wert, Text, Quelle, URL, Stand), Kernkennzahl «4 von 100», Mythen, Warnsignale |
+| `src/data/facts.ts` | Fakten-Karten (Wert, Text, Quelle, URL, Stand), Kernkennzahl (Swisslos-Bruttospielertrag), Mythen, Warnsignale |
 | `src/data/tricks.ts` | Anbieter-Tricks und was dahinter steckt |
 | `src/data/selftest.ts` | Fragen, Antwortoptionen, Schwellen, Texte und Tipps je Ampelstufe |
 | `src/data/help.ts` | Hilfsangebote, Clip (YouTube-ID), Medienlinks, Tipps für Angehörige |
@@ -72,8 +72,8 @@ Jede Figur spielt Einzelwetten à CHF 10 mit zufälligen Tipps. Die Werte sind M
 | **1500 (Default)** | **≈ 96** |
 | 2000 | ≈ 98 |
 
-Zufällige Tipps haben im Schnitt hohe Quoten und streuen deshalb stark. Um auf die Grössenordnung
-der UCSD-Studie (96 % verlieren) zu kommen, braucht es darum 1500 Wetten pro Person. Das sind
+Zufällige Tipps haben im Schnitt hohe Quoten und streuen deshalb stark. Damit langfristig fast alle
+verlieren, braucht es darum 1500 Wetten pro Person. Das sind
 etwa 30 Wetten pro Woche während eines Jahres.
 
 ## Design-Entscheide (Überarbeitung vom 15.11.2026)
@@ -216,7 +216,13 @@ Pfad zur Datei anpassen, z. B. `file:///C:/Praesentation/index.html`. Die alten 
   und den Link fachlich prüfen lassen (`src/data/help.ts`).
 - **Skala «Wo hört der Spass auf?»** und die Gesprächstipps für Eltern und Trainer:innen sind eigene
   Formulierungen. Bitte fachlich gegenlesen.
-- **Kernkennzahl:** «4 von 100» (UCSD) statt «jeder Hundertste». Bei Bedarf in `src/data/facts.ts` ändern.
+- **Schweizer Zahlen statt US-Studie (26.11.2026, Wunsch aus dem Projektteam):** Die UCSD-Studie ist von der
+  Seite entfernt. Neu stehen dort Zahlen von Swisslos (Geschäftsbericht 2025: Bruttospielertrag
+  Sportwetten CHF 169 Mio.) und Sucht Schweiz (Factsheet «Sportwetten bei jungen Menschen», Mai 2026:
+  8,9 % bzw. 14,8 % der jungen Männer haben gewettet, ~50 % sehen häufig Werbung, >40 % nie über
+  Risiken informiert, geschätzte 30 % regelmässig wettende Kollegen). Die Werte stammen aus Suchtreffern
+  auf den Seiten der Herausgeber; die PDFs selbst waren aus der Entwicklungsumgebung nicht abrufbar.
+  **Vor der Präsentation kurz in den Originalen gegenprüfen** (`src/data/facts.ts`).
 - **Selbsttest-Schwellen** (Grün 0–3, Gelb 4–9, Rot ab 10) von Fachpersonen prüfen lassen.
 - **Teamnamen** vor einer Veröffentlichung kurz prüfen, ob gleichnamige Amateurclubs existieren.
 - **Mit der Zielgruppe testen:** ob der Einseiter durchgescrollt wird und ob der Simulator Lust aufs Wetten macht.
