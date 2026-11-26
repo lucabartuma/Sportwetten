@@ -216,13 +216,20 @@ Pfad zur Datei anpassen, z. B. `file:///C:/Praesentation/index.html`. Die alten 
   und den Link fachlich prüfen lassen (`src/data/help.ts`).
 - **Skala «Wo hört der Spass auf?»** und die Gesprächstipps für Eltern und Trainer:innen sind eigene
   Formulierungen. Bitte fachlich gegenlesen.
-- **Schweizer Zahlen statt US-Studie (26.11.2026, Wunsch aus dem Projektteam):** Die UCSD-Studie ist von der
-  Seite entfernt. Neu stehen dort Zahlen von Swisslos (Geschäftsbericht 2025: Bruttospielertrag
-  Sportwetten CHF 169 Mio.) und Sucht Schweiz (Factsheet «Sportwetten bei jungen Menschen», Mai 2026:
-  8,9 % bzw. 14,8 % der jungen Männer haben gewettet, ~50 % sehen häufig Werbung, >40 % nie über
-  Risiken informiert, geschätzte 30 % regelmässig wettende Kollegen). Die Werte stammen aus Suchtreffern
-  auf den Seiten der Herausgeber; die PDFs selbst waren aus der Entwicklungsumgebung nicht abrufbar.
-  **Vor der Präsentation kurz in den Originalen gegenprüfen** (`src/data/facts.ts`).
+- **Nur Schweizer Zahlen (26.11.2026, Wunsch aus dem Projektteam):** Die UCSD-Studie (USA) und der
+  Branchenblog Altenar sind von der Seite entfernt. Neu verwendet:
+  - Swisslos, Geschäftsbericht 2025: Bruttospielertrag Sportwetten CHF 169 Mio.
+  - Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen» (Mai 2026): 8,9 % bzw. 14,8 % der jungen
+    Männer haben gewettet, ~50 % sehen häufig Werbung, >40 % nie über Risiken informiert, 23 % glauben,
+    Sportwissen reiche zum Gewinnen, geschätzte 30 % regelmässig wettende Kollegen.
+  - SOS-Spielsucht / Sucht Schweiz, Fachwissen Geldspiel (2016): Marge bei Sporttip rund 20 % pro Spiel
+    (Beispiel eines einzelnen Spiels, älter, deshalb mit Jahr angeschrieben). Der Simulator rechnet
+    weiterhin vorsichtig mit 7 %.
+  Die Werte stammen aus Suchtreffern auf den Seiten der Herausgeber; die PDFs selbst waren aus der
+  Entwicklungsumgebung nicht abrufbar. **Vor der Präsentation kurz in den Originalen gegenprüfen**
+  (`src/data/facts.ts`).
+- **Links aus Deutschland** (keine Zahlen): buendnis-gegen-sportwettenwerbung.de, check-dein-spiel.de und
+  die heute-show (ZDF) im Abschnitt Hilfe. Bei Bedarf durch Schweizer Angebote ersetzen (`src/data/help.ts`).
 - **Selbsttest-Schwellen** (Grün 0–3, Gelb 4–9, Rot ab 10) von Fachpersonen prüfen lassen.
 - **Teamnamen** vor einer Veröffentlichung kurz prüfen, ob gleichnamige Amateurclubs existieren.
 - **Mit der Zielgruppe testen:** ob der Einseiter durchgescrollt wird und ob der Simulator Lust aufs Wetten macht.

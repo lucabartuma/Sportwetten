@@ -28,7 +28,7 @@ export const tricks: Record<TrickId, Trick> = {
     popupButton: 'Bonus sichern',
     aufloesungTitel: 'Was ist hier gerade passiert?',
     aufloesung:
-      'Willkommensboni sind an Umsatzbedingungen geknüpft: Du musst den Bonus oft 5- bis 10-fach verwetten, bevor Du ihn auszahlen kannst. Ziel ist, dass Du länger spielst – und dabei die Marge mehrfach bezahlst.',
+      'Willkommensboni sind an Umsatzbedingungen geknüpft: Du musst den Bonus meist mehrfach verwetten, bevor Du ihn auszahlen kannst. Ziel ist, dass Du länger spielst – und dabei die Marge mehrfach bezahlst.',
   },
   lossChasing: {
     id: 'lossChasing',

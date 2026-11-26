@@ -14,7 +14,7 @@ export interface Fakt {
 export const fakten: Fakt[] = [
   {
     id: 'junge-maenner',
-    wert: '~10 %',
+    wert: '~10 %',
     text: 'der Männer zwischen 15 und 24 Jahren in der Schweiz zeigen ein problematisches Spielverhalten – rund 40’000 Personen.',
     quelle: 'Schweizerische Gesundheitsbefragung 2022, zitiert in SRF (Kampagne «Game Changer»)',
     url: 'https://www.srf.ch/news/dialog/hockey-und-fussball-game-changer-kampagne-warnt-vor-risiken-von-sportwetten',
@@ -22,19 +22,19 @@ export const fakten: Fakt[] = [
   },
   {
     id: 'online-wachstum',
-    wert: '+40 %',
+    wert: '+40 %',
     text: 'mehr Online-Wettende in der Schweiz innerhalb von zehn Jahren.',
     quelle: 'SRF, Kampagne «Game Changer»',
     url: 'https://www.srf.ch/news/dialog/hockey-und-fussball-game-changer-kampagne-warnt-vor-risiken-von-sportwetten',
     stand: '2026',
   },
   {
-    id: 'bevoelkerung',
-    wert: '4,3 %',
-    text: 'der Bevölkerung ab 15 Jahren in der Schweiz zeigen ein problematisches Geldspielverhalten.',
-    quelle: 'stgallen24 / Keystone-SDA, 9.7.2026',
-    url: 'https://stgallen24.ch/articles/392815-wenn-fussball-zur-falle-wird',
-    stand: '9.7.2026',
+    id: 'wissen',
+    wert: '23 %',
+    text: 'der 15- bis 29-Jährigen glauben, dass gutes Sportwissen reicht, um mit Wetten Geld zu gewinnen.',
+    quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen»',
+    url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
+    stand: 'Mai 2026',
   },
   {
     id: 'swisslos',
@@ -46,7 +46,7 @@ export const fakten: Fakt[] = [
   },
   {
     id: 'egames',
-    wert: '18,8 %',
+    wert: '18,8 %',
     text: 'der 18- bis 29-jährigen Online-Geldspielenden in der Schweiz zeigen ein mässiges oder problematisches Risikoprofil.',
     quelle: 'Sucht Schweiz / GREA, Studie eGames 2021/22',
     url: 'https://www.sos-spielsucht.ch/media/files/2023/02/Factsheet_eGames_Problematisch_20230214_D.pdf',
@@ -54,23 +54,23 @@ export const fakten: Fakt[] = [
   },
   {
     id: 'marge',
-    wert: '~6 %',
-    text: 'Marge steckt typischerweise in einer Fussballwette – die Quoten ergeben zusammen ca. 106 %.',
-    quelle: 'Branchenbeispiel Altenar',
-    url: 'https://altenar.com/de/blog/house-edge-in-sports-betting-how-the-best-sportsbooks-manage-their-edge/',
-    stand: '2025',
+    wert: '~20 %',
+    text: 'Marge behielt Sporttip (Swisslos) in einem Beispiel pro Fussballspiel ein. Wettende bekamen im Schnitt nur rund 80 % ihres Einsatzes zurück.',
+    quelle: 'SOS-Spielsucht / Sucht Schweiz, Fachwissen Geldspiel (Beispiel eines einzelnen Spiels)',
+    url: 'https://www.sos-spielsucht.ch/media/files/2016/09/gs-fachwissen.pdf',
+    stand: '2016',
   },
   {
     id: 'junge-wettende',
-    wert: '14,8 %',
-    text: 'der jungen Männer zwischen 15 und 29 Jahren haben in den letzten 12 Monaten auf Sport gewettet (alle Befragten: 8,9 %).',
+    wert: '14,8 %',
+    text: 'der jungen Männer zwischen 15 und 29 Jahren haben in den letzten 12 Monaten auf Sport gewettet (alle Befragten: 8,9 %).',
     quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen» (2’028 Befragte, 15–29 Jahre)',
     url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
     stand: 'Mai 2026',
   },
   {
     id: 'werbung',
-    wert: '~50 %',
+    wert: '~50 %',
     text: 'der 15- bis 29-Jährigen sehen häufig oder sehr häufig Werbung für Sportwetten – vor allem auf Social Media und in Apps.',
     quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen»',
     url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
@@ -78,7 +78,7 @@ export const fakten: Fakt[] = [
   },
   {
     id: 'risiken',
-    wert: '>40 %',
+    wert: '>40 %',
     text: 'der 15- bis 29-Jährigen wurden nach eigenen Angaben nie über die Risiken von Sportwetten informiert.',
     quelle: 'Sucht Schweiz, Factsheet «Sportwetten bei jungen Menschen»',
     url: 'https://www.suchtschweiz.ch/publication/sportwetten-bei-jungen-menschen-exposition-und-kenntnisse/',
@@ -112,7 +112,7 @@ export interface Mythos {
 export const mythen: Mythos[] = [
   {
     mythos: '«Wer viel über Fussball weiss, gewinnt.»',
-    fakt: 'Die Marge steckt in jeder Quote. Wissen ändert daran nichts. Anbieter haben mehr Daten als jeder Fan.',
+    fakt: 'Das glaubt fast jede:r Vierte zwischen 15 und 29. Aber die Marge steckt in jeder Quote – Wissen ändert daran nichts. Anbieter haben mehr Daten als jeder Fan.',
   },
   {
     mythos: '«Ich hole mir das Verlorene zurück.»',

@@ -36,11 +36,11 @@ onMounted(() => setTimeout(() => (gestartet.value = true), 350))
           <span class="fill" :style="{ transform: `scaleX(${gestartet ? rueckzahlung / 100 : 0})` }"></span>
           <span class="wert">CHF {{ chf(rueckzahlung) }}</span>
         </div>
-        <p class="small muted">Bei einer Marge von {{ prozent(cfg.marge) }} pro Tipp (wie im Simulator).</p>
+        <p class="small muted">Gerechnet mit {{ prozent(cfg.marge) }} Marge pro Tipp, wie im Simulator. Das ist vorsichtig: Bei Sporttip waren es in einem Beispiel rund 20 %.</p>
         <div class="stats">
           <div>
-            <span class="zahl">106 %</span>
-            <span class="small muted">ergeben die Quoten eines Spiels zusammen</span>
+            <span class="zahl">{{ marge?.wert }}</span>
+            <span class="small muted">Marge pro Spiel bei Sporttip (Beispiel)</span>
           </div>
           <div>
             <span class="zahl">{{ kernkennzahl.wert }}</span>
@@ -48,7 +48,7 @@ onMounted(() => setTimeout(() => (gestartet.value = true), 350))
           </div>
         </div>
         <p v-if="marge && studie" class="quelle">
-          Quellen: <a :href="marge.url" target="_blank" rel="noopener noreferrer">{{ marge.quelle }}</a> ·
+          Quellen: <a :href="marge.url" target="_blank" rel="noopener noreferrer">SOS-Spielsucht / Sucht Schweiz</a> ·
           <a :href="studie.url" target="_blank" rel="noopener noreferrer">Swisslos, Geschäftsbericht 2025</a>
         </p>
       </aside>
